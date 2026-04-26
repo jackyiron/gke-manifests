@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: rancher-vs
+  namespace: istio-system
+spec:
+  hosts:
+    - "*"
+  http:
+    - match:
+        - uri:
+            prefix: "/v1"
+      route:
+        - destination:
+            host: cattle-cluster-agent.istio-system.svc.cluster.local
+            port:
+              number: 443
+    # Fix 301 redirect issues
+    - match:
+        - uri:
+            exact: "/"
+      redirect:
+        scheme: https
+        authority: cattle.istio-system.svc.cluster.local
