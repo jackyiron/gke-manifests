@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: bookinfo
-  namespace: default
+  name: jaeger-vs
+  namespace: istio-system
 spec:
   hosts:
-    - "bookinfo.jacky3.com"
+    - "jaeger.jacky3.com"
   gateways:
     - monitoring-gateway
   http:
     - route:
         - destination:
-            host: productpage
+            host: jaeger
             port:
-              number: 9080
+              number: 16686

@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: rancher-vs
+  namespace: cattle-system
+spec:
+  hosts:
+    - "rancher.jacky3.com"
+  gateways:
+    - rancher-gateway
+  tls:
+    - match:
+        - port: 443
+          sniHosts:
+            - "rancher.jacky3.com"
+      route:
+        - destination:
+            host: rancher.cattle-system.svc.cluster.local
+            port:
+              number: 443

@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
-
-patches:
-  - path: kiali-patch.yaml
-  - path: rancher-vs.yaml
+  - ../monitoring/jaeger-vs.yaml
+  - ../monitoring/kiali-vs.yaml
+  - ../monitoring/grafana-vs.yaml
+  - ../bookinfo-vs.yaml

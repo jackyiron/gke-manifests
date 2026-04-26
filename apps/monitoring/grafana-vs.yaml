@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: bookinfo
-  namespace: default
+  name: grafana-vs
+  namespace: monitoring
 spec:
   hosts:
-    - "bookinfo.jacky3.com"
+    - "grafana.jacky3.com"
   gateways:
     - monitoring-gateway
   http:
     - route:
         - destination:
-            host: productpage
+            host: grafana
             port:
-              number: 9080
+              number: 3000

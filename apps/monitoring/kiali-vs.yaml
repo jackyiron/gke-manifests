@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: bookinfo
-  namespace: default
+  name: kiali-vs
+  namespace: istio-system
 spec:
   hosts:
-    - "bookinfo.jacky3.com"
+    - "kiali.jacky3.com"
   gateways:
     - monitoring-gateway
   http:
     - route:
         - destination:
-            host: productpage
+            host: kiali
             port:
-              number: 9080
+              number: 20001
