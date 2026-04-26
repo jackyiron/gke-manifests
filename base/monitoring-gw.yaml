@@ -5,7 +5,7 @@ metadata:
   namespace: istio-system
 spec:
   selector:
-    istio: ingressgateway
+    istio: ingress
   servers:
     - port:
         number: 80
@@ -15,4 +15,16 @@ spec:
         - "kiali.jacky3.com"
         - "grafana.jacky3.com"
         - "jaeger.jacky3.com"
-        - "bookinfo.jacky3.com"
+      tls:
+        httpsRedirect: true # 強制 HTTP 跳轉 HTTPS
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "kiali.jacky3.com"
+        - "grafana.jacky3.com"
+        - "jaeger.jacky3.com"
+      tls:
+        mode: SIMPLE # 讓 Ingress 負責解開 SSL
+        credentialName: monitoring-certs # 必須與 Secret 名稱一致

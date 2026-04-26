@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: monitoring-certs
+  namespace: istio-system
+spec:
+  secretName: monitoring-certs # Istio Gateway 會引用這個名字
+  issuerRef:
+    name: letsencrypt-prod # 請確保你的 ClusterIssuer 名稱正確
+    kind: ClusterIssuer
+  commonName: kiali.jacky3.com
+  dnsNames:
+  - kiali.jacky3.com
+  - grafana.jacky3.com
+  - jaeger.jacky3.com
