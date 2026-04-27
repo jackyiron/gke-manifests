@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: test-app
+  name: nginx-gitops
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/jackyiron/gke-manifests.git
+    repoURL: https://github.com/jackyiron/nginx-gitops.git
     targetRevision: main
-    path: test-app
+    path: .
   destination:
     server: https://kubernetes.default.svc
     namespace: test-app
