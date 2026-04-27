@@ -2,19 +2,15 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: rancher-vs
-  namespace: cattle-system
+  namespace: cattle-system # 放在 Rancher 所在的命名空間
 spec:
   hosts:
-    - "rancher.jacky3.com"
+  - rancher.jacky3.com
   gateways:
-    - rancher-gateway
-  tls:
-    - match:
-        - port: 443
-          sniHosts:
-            - "rancher.jacky3.com"
-      route:
-        - destination:
-            host: rancher.cattle-system.svc.cluster.local
-            port:
-              number: 443
+  - istio-system/monitoring-gateway # 這裡要指向你剛才修正過的那個全域 Gateway
+  http:
+  - route:
+    - destination:
+        host: rancher.cattle-system.svc.cluster.local # 指向 Rancher 的內部 Service
+        port:
+          number: 80 # Rancher Service 通常監聽 80
