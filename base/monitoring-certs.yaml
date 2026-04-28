@@ -4,12 +4,10 @@ metadata:
   name: monitoring-certs
   namespace: istio-system
 spec:
-  secretName: monitoring-certs # Istio Gateway 會引用這個名字
+  secretName: monitoring-certs
   issuerRef:
-    name: letsencrypt-prod # 請確保你的 ClusterIssuer 名稱正確
+    name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: kiali.jacky3.com
   dnsNames:
-  - kiali.jacky3.com
-  - grafana.jacky3.com
-  - jaeger.jacky3.com
+  - jacky3.com
+  - '*.jacky3.com'

@@ -5,28 +5,24 @@ metadata:
   namespace: istio-system
 spec:
   selector:
-    istio: ingress # 確保對應到你的 IngressGateway Pod
+    istio: ingress
   servers:
   - hosts:
-    - kiali.jacky3.com
-    - grafana.jacky3.com
-    - jaeger.jacky3.com
-    - argocd.jacky3.com  # <--- 新增這一行
+    - "*.jacky3.com"
+    - "jacky3.com"
     port:
       name: http
       number: 80
       protocol: HTTP
     tls:
-      httpsRedirect: true # 強制跳轉 HTTPS
+      httpsRedirect: true
   - hosts:
-    - kiali.jacky3.com
-    - grafana.jacky3.com
-    - jaeger.jacky3.com
-    - argocd.jacky3.com  # <--- 新增這一行
+    - "*.jacky3.com"
+    - "jacky3.com"
     port:
       name: https
       number: 443
       protocol: HTTPS
     tls:
-      credentialName: monitoring-certs # 確保這個 Secret 存在於 istio-system
+      credentialName: monitoring-certs
       mode: SIMPLE

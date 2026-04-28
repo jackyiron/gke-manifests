@@ -7,10 +7,10 @@ spec:
   hosts:
     - "grafana.jacky3.com"
   gateways:
-    - monitoring-gateway
+    - istio-system/monitoring-gateway
   http:
     - route:
         - destination:
-            host: grafana
+            host: grafana.monitoring.svc.cluster.local
             port:
-              number: 3000
+              number: 80
