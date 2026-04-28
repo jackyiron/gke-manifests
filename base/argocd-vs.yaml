@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: argocd-vs
+  namespace: argocd
+spec:
+  hosts:
+  - "argocd.jacky3.com"
+  gateways:
+  - istio-system/monitoring-gateway # 引用你現有的 Gateway
+  http:
+  - route:
+    - destination:
+        host: argocd-server
+        port:
+          number: 80
