@@ -2,5 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - ./rancher-gateway.yaml
-  - ./rancher-vs.yaml
+  - argocd-vs.yaml
+  - cluster-issuer-dns.yaml
+  - monitoring-certs.yaml
+  - monitoring-gw.yaml
+  - rancher-gateway.yaml
+  - rancher-vs.yaml
